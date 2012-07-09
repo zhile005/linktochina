@@ -1,0 +1,23 @@
+<head>
+	<title>#if($title)$title#else 北京链接咨询事务所LinkToChina Consulting–为您搭建中国与欧洲的桥梁。 #end</title>
+	<meta name="description" content="北京链接咨询事务所（LinkToChina Consulting Partnership）是由瑞士和中国合伙人于2011年在北京成立的一家外商投资合伙制企业，总部设立在北京和瑞士，公司业务主要涉及金融理财、私募、境外理财、境外房地产、高档时装品牌、私家游艇、红酒等。公司在欧洲有充足的金融领域关系、团队成员经验丰富，给您未来的工作中提供高品质的服务。">
+	<meta name="Keywords" content="PE私募、金融理财、投资顾问、境外投资、LinkToChina、北京链接咨询事务所、欧洲金融市场、瑞士银行、UBS、BLUNAUTA、欧洲房地产、意大利红酒、意大利餐厅、瑞士房地产、境外银行、链接中国、尹青、MARIO TETTAMANTI、外商合伙企业、欧洲商务旅游团、欧洲高级旅游、FIP、foreign-Invested Partnership Enterprise">
+    <link rel="stylesheet" type="text/css" href="$projectUrl.getUrl("/script/jquery-ui-redmond/css/redmond/jquery-ui-1.8.16.custom.css")"/>
+    <link rel="stylesheet" type="text/css" href="$projectUrl.getUrl("/webresource/skin/default/style.css")"/>
+	<link rel="stylesheet" type="text/css" href="$projectUrl.getUrl("/webresource/skin/default/style-append.css")"/>
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/jquery-1.7.min.js")"></script>
+	<!--WdatePicker lib包 -->
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/My97DatePicker/WdatePicker.js")"></script>
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/project/common/base.js?version=1.0")"></script>
+    <script type="text/javascript" src="$projectUrl.getUrl("/script/project/common/validate.js")"></script>
+	<!--jquery-ui lib包 -->
+    <script type="text/javascript" src="$projectUrl.getUrl("/script/jquery-ui-redmond/js/jquery-ui-1.8.16.custom.min.js")"></script>
+	<!--jsTree lib包 -->
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/jstree/jquery.jstree.1.0_rc3.js")"></script>
+	<!--baseTree lib包 -->
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/project/common/baseTree.js")"></script>
+	<!--自定义的jquery插件 lib包 -->
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/project/common/jQueryPlugins.js")"></script>
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/project/common/waiting.js")"></script>
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/forscroll.js")"></script>
+</head>

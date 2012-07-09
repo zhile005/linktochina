@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="WORKER_TYPE" >
+  	<typeAlias alias="workerType" type="com.oa.common.pojo.WorkerType"/>
+    <resultMap id="workerTypeMap" class="workerType">
+		<!-- 类型编码 -->
+	    <result property="workerTypeCode" column="WORKER_TYPE_CODE"/>
+		<!-- 类型名称 -->
+	    <result property="workerTypeName" column="WORKER_TYPE_NAME"/>
+		<!-- 种类 -->
+	    <result property="wtype" column="WTYPE"/>
+		<!-- 版本 -->
+	    <result property="version" column="VERSION"/>
+		<!-- 执行失败容忍次数 -->
+	    <result property="failMaxNum" column="FAIL_MAX_NUM"/>
+		<!-- 超时时限（天） -->
+	    <result property="passTimeNum" column="PASS_TIME_NUM"/>
+		<!-- 所属类型编码 -->
+	    <result property="parentTypeCode" column="PARENT_TYPE_CODE"/>
+		<!-- 是否有效 -->
+	    <result property="yn" column="YN"/>
+		<!-- 执行克隆表达式 -->
+	    <result property="cronexpression" column="CRONEXPRESSION"/>
+		<!-- 建立时间 -->
+	    <result property="createTime" column="CREATE_TIME"/>
+		<!-- 更新时间 -->
+	    <result property="updateTime" column="UPDATE_TIME"/>
+	    <!-- 是否开启监控 -->
+	    <result property="watchYn" column="WATCH_YN"/>
+		<!-- 心跳次数 -->
+	    <result property="activeNum" column="ACTIVE_NUM"/>
+		<!-- 挤压单量 -->
+	    <result property="waitOrders" column="WAIT_ORDERS"/>
+    </resultMap>
+    <sql id="columnSql">
+    	WORKER_TYPE_CODE
+		 ,WORKER_TYPE_NAME
+		 ,WTYPE
+		 ,VERSION
+		 ,FAIL_MAX_NUM
+		 ,PASS_TIME_NUM
+		 ,PARENT_TYPE_CODE
+		 ,YN
+		 ,CRONEXPRESSION
+		 ,CREATE_TIME
+		 ,UPDATE_TIME
+		 ,WATCH_YN
+		 ,ACTIVE_NUM
+		 ,WAIT_ORDERS
+    </sql>
+    <select id="getInfo" 
+    	resultMap="workerTypeMap"
+    	parameterClass="java.lang.String">
+		SELECT <include refid="columnSql"/>
+		FROM OA_WORKER_TYPE T
+		WHERE WORKER_TYPE_CODE = #workerTypeCode#
+    </select>
+    <select id="getAll" 
+    	resultMap="workerTypeMap">
+		SELECT <include refid="columnSql"/>
+		FROM OA_WORKER_TYPE T
+    </select>
+    <select id="getNextLevel" 
+    	resultMap="workerTypeMap"
+    	parameterClass="java.lang.String">
+		SELECT <include refid="columnSql"/>
+		FROM OA_WORKER_TYPE T
+		WHERE PARENT_TYPE_CODE = #parentTypeCode#
+    </select>
+    <select id="getUpdatedWorkerType" 
+    	resultMap="workerTypeMap"
+    	parameterClass="java.util.List">
+		SELECT <include refid="columnSql"/>
+		FROM OA_WORKER_TYPE T
+		WHERE 1 = 2
+		<iterate prepend="OR" conjunction="OR" open="(" close=")">
+			(WORKER_TYPE_CODE = #paraList[].workerTypeCode# AND VERSION != #paraList[].version#)
+		</iterate>
+		<iterate prepend="OR" conjunction="AND" open="(" close=")">
+			WORKER_TYPE_CODE != #paraList[].workerTypeCode#
+		</iterate>
+    </select>
+    <update id="doDeleteWorkerType"
+  		parameterClass="java.lang.String">
+		DELETE OA_WORKER_TYPE
+		WHERE WORKER_TYPE_CODE = #workerTypeCode#
+			AND NOT EXISTS (
+				SELECT TOP 1 1 FROM OA_WORKER_TYPE childwt WHERE childwt.PARENT_TYPE_CODE = OA_WORKER_TYPE.WORKER_TYPE_CODE
+			)
+			AND NOT EXISTS (
+				SELECT TOP 1 1 FROM OA_WORKER wt WHERE wt.WORKER_TYPE_CODE = OA_WORKER_TYPE.WORKER_TYPE_CODE
+			)
+  	</update>
+  	<update id="updateWorkerType"
+  		parameterClass="workerType">
+  		UPDATE OA_WORKER_TYPE
+            SET WORKER_TYPE_NAME = #workerTypeName#
+               ,WTYPE = #wtype#
+               ,VERSION = VERSION + 1
+               ,FAIL_MAX_NUM = #failMaxNum#
+               ,PASS_TIME_NUM = #passTimeNum#
+               <isNotEmpty property="parentTypeCode">
+               ,PARENT_TYPE_CODE = #parentTypeCode#
+               </isNotEmpty>
+               ,YN = #yn#
+               ,WATCH_YN = #watchYn#
+               ,CRONEXPRESSION = #cronexpression#
+               ,UPDATE_TIME = NOW()
+		WHERE WORKER_TYPE_CODE = #workerTypeCode#
+  	</update>
+  	<update id="updateWorkerTypeWatchStatus"
+  		parameterClass="java.util.Map">
+  		UPDATE OA_WORKER_TYPE
+		SET ACTIVE_NUM = ACTIVE_NUM+1
+	      ,WAIT_ORDERS = (
+	           SELECT COUNT(1)
+	           FROM   OA_WORKER pw
+	           WHERE  pw.WORKER_TYPE_CODE = OA_WORKER_TYPE.WORKER_TYPE_CODE
+	                  AND pw.WORKER_STATUS = #waitStatus#
+	       )
+		WHERE  WORKER_TYPE_CODE = #workerTypeCode#
+  	</update>
+  	<insert id="saveWorkerType"
+  		parameterClass="workerType">
+	  		INSERT INTO OA_WORKER_TYPE(
+                   WORKER_TYPE_CODE
+                   ,WORKER_TYPE_NAME
+                   ,WTYPE
+                   ,VERSION
+                   ,FAIL_MAX_NUM
+                   ,PASS_TIME_NUM
+                   ,PARENT_TYPE_CODE
+                   ,YN
+                   ,CRONEXPRESSION
+                   ,CREATE_TIME
+                   ,UPDATE_TIME
+                   ,WATCH_YN
+                   ,ACTIVE_NUM
+                   ,WAIT_ORDERS
+			)
+			VALUES(
+                   #workerTypeCode#
+                   ,#workerTypeName#
+                   ,#wtype#
+                   ,1
+                   ,#failMaxNum#
+                   ,#passTimeNum#
+                   ,#parentTypeCode#
+                   ,#yn#
+                   ,#cronexpression#
+                   ,NOW()
+                   ,NOW()
+                   ,#watchYn#
+                   ,0
+                   ,0
+			)
+  	</insert>
+</sqlMap>

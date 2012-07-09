@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	#parse("/WEB-INF/vm/common/head.vm")
+	<body id="mainframe">
+		<div class='box cust'>
+        	<div class='title'>系统管理/workerType管理</div>
+            <!--查询区-->
+        	<div class="double_box" style="height:550px">
+                <div class='leftbox showOverFlow'>
+        			<div class='jdTitle' >
+        				workerTree(单击查看/双击编辑)
+        				<input type="button" id="initbtn" value="系统初始化"/>
+        			</div>
+        			<div class='queryForm'>
+        			</div>
+        			<div id='workTree'></div>
+                </div>
+            	<div class='rightbox showOverFlow' id="info">
+        			<div class='jdTitle'>节点信息</div>
+        			<div id="showInfo" class="jd_hide">
+            			<table class="table_two alignleft">
+            				<tr><th width="30%">类型编码</th><td id="workerTypeCode"></td></tr>
+            				<tr><th>类型名称</th><td id="workerTypeName"></td></tr>
+            				<tr><th>种类</th><td id="wtypeText"></td></tr>
+            				<tr><th>是否有效</th><td id="ynText"></td></tr>
+            				<tr><th>克隆表达式</th><td id="cronexpression"></td></tr>
+            				<tr><th>超时时限(天)</th><td id="passTimeNum"></td></tr>
+            				<tr><th>执行失败容忍次数</th><td id="failMaxNum"></td></tr>
+        					<tr><th>是否开启监控</th><td id="watchYnText"></td></tr>
+        					<tr><th>心跳次数</th><td id="activeNum"></td></tr>
+        					<tr><th>挤压单量</th><td id="waitOrders"></td></tr>
+            				<tr><th>版本</th><td id="version"></td></tr>
+                        </table>
+        				<div class="center">
+        					<input type="button" id="refresh_node" value="刷新"/>
+            				<input type="button" id="new_node" value="部署新节点"/>
+        					<input type="button" id="del_node" value="删除节点"/>
+            			</div>
+        				<div class="center">
+        					删除前提：没有生成任务\没有子节点
+            			</div>
+        			</div>
+        			<div id="editInfo" class="jd_hide">
+        				<input type="hidden" id="workerTypeCode_edit"/>
+        				<input type="hidden" id="wtype_edit"/>
+            			<table class="table_two alignleft">
+            				<tr><th width="30%">类型编码</th><td id="workerTypeCode_text_edit"></td></tr>
+            				<tr>
+            					<th>类型名称</th>
+            					<td><input type="text" id="workerTypeName_edit" name="workerTypeName_edit" readonly="readonly"/></td>
+            				</tr>
+            				<tr><th>种类</th><td id="wtypeText_edit"></td></tr>
+            				<tr>
+            					<th>是否有效</th>
+            					<td>
+            						<select id="yn_edit" name="yn_edit">
+										#foreach($yn in $YnStatusEnum)
+        								<option value="$yn.value">$yn.text</option>
+										#end
+                                    </select>
+            					</td>
+            				</tr>
+            				<tr>
+            					<th>克隆表达式</th>
+            					<td><input type="text" id="cronexpression_edit" name="cronexpression_edit" refType="maxlength(20)"/></td>
+            				</tr>
+            				<tr>
+            					<th>超时时限(天)</th>
+            					<td><input type="text" id="passTimeNum_edit" name="passTimeNum_edit" refType="int+"/></td>
+            				</tr>
+            				<tr>
+            					<th>执行失败容忍次数</th>
+            					<td><input type="text" id="failMaxNum_edit" name="failMaxNum_edit" refType="int+"/></td>
+            				</tr>
+        					<tr>
+            					<th>是否开启监控</th>
+            					<td>
+            						<select id="watchYn_edit">
+										#foreach($yn in $YnStatusEnum)
+        								<option value="$yn.value">$yn.text</option>
+										#end
+                                    </select>
+            					</td>
+            				</tr>
+        					<tr><th>心跳次数</th><td id="activeNum_edit"></td></tr>
+        					<tr><th>挤压单量</th><td id="waitOrders_edit"></td></tr>
+            				<tr><th>版本</th><td id="version_edit"></td></tr>
+                        </table>
+                        <div class="center">
+            				<input type="button" id="save_edit" value="保存"/>
+            				<input type="button" id="reset_edit" value="取消"/>
+            			</div>
+        			</div>
+        			<div id="newInfo" class="jd_hide">
+        				<input type="hidden" id="parentTypeCode_new"/>
+            			<table class="table_two alignleft">
+        					<tr>
+            					<th width="30%">父类型</th>
+            					<td id="parentTypeCodeName_new"></td>
+            				</tr>
+            				<tr>
+            					<th width="30%">类型编码</th>
+            					<td>
+        							<select id="workerTypeCode_new" name="workerTypeCode_new">
+        								<option value="">正在获取请稍后</option>
+                                    </select>
+        						</td>
+            				</tr>
+            				<tr>
+            					<th>类型名称</th>
+            					<td><input type="text" id="workerTypeName_new" name="workerTypeName_new" readonly="readonly"/></td>
+            				</tr>
+            				<tr>
+            					<th>种类</th>
+            					<td>
+            						<select id="wtype_new" name="wtype_new">
+										#foreach($WorkerType in $WorkerTypeEnum)
+        								<option value="$WorkerType.value">$WorkerType.text</option>
+										#end
+                                    </select>
+            					</td>
+            				</tr>
+            				<tr>
+            					<th>是否有效</th>
+            					<td>
+        							<select id="yn_new" name="yn_new">
+										#foreach($yn in $YnStatusEnum)
+        								<option value="$yn.value">$yn.text</option>
+										#end
+        						</td>
+            				</tr>
+            				<tr>
+            					<th>克隆表达式</th>
+            					<td><input type="text" id="cronexpression_new" name="cronexpression_new" refType="maxlength(20)"/></td>
+            				</tr>
+            				<tr>
+            					<th>超时时限(天)</th>
+            					<td><input type="text" id="passTimeNum_new" name="passTimeNum_new" refType="int+"/></td>
+            				</tr>
+            				<tr>
+            					<th>执行失败容忍次数</th>
+            					<td><input type="text" id="failMaxNum_new" name="failMaxNum_new" refType="int+"/></td>
+            				</tr>
+        					<tr>
+            					<th>是否开启监控</th>
+            					<td>
+            						<select id="watchYn_new" name="watchYn_new">
+										#foreach($yn in $YnStatusEnum)
+        								<option value="$yn.value">$yn.text</option>
+										#end
+                                    </select>
+            					</td>
+            				</tr>
+        					<tr><th>心跳次数</th><td id="activeNum_new"></td></tr>
+        					<tr><th>挤压单量</th><td id="waitOrders_new"></td></tr>
+            				<tr><th>版本</th><td id="version_new">1</td></tr>
+                        </table>
+            			<div class="center">
+            				<input type="button" id="save_new" value="保存"/>
+            				<input type="button" id="reset_new" value="取消"/>
+            			</div>
+        				<div>
+        					<br>作为一个例子，下面的Quartz克隆表达式将在星期一到星期五的每天上午10点15分执行一个作业。
+                            <br>0 15 10 ? * MON-FRI
+                            <br>下面的表达式
+                            <br>0 15 10 ? * 6L 2002-2005
+                            <br>将在2002年到2005年的每个月的最后一个星期五上午10点15分执行作业。
+                            <br>克隆表达式（用于任务调度） 字段   允许值   允许的特殊字符 秒  
+                            <br>0-59   , - * / 分   
+                            <br>0-59   , - * / 小时   
+                            <br>0-23   , - * / 日期   
+                            <br>1-31   , - * ? / L W C 月份   
+                            <br>1-12 或者 JAN-DEC   , - * / 星期   
+                            <br>1-7 或者 SUN-SAT   , - * ? / L C # 年（可选）   留空, 1970-2099   , - * / 
+                            <br>"0 0 12 * * ?" 每天中午12点触发 
+                            <br>"0 15 10 ? * *" 每天上午10:15触发
+                            <br>"0 15 10 * * ?" 每天上午10:15触发 
+                            <br>"0 15 10 * * ? *" 每天上午10:15触发 
+                            <br>"0 15 10 * * ? 2005" 2005年的每天上午10:15触发
+                            <br>"0 * 14 * * ?" 在每天下午2点到下午2:59期间的每1分钟触发
+                            <br>"0 0/5 14 * * ?" 在每天下午2点到下午2:55期间的每5分钟触发
+                            <br>"0 0/5 14,18 * * ?" 在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发 
+                            <br>"0 0-5 14 * * ?" 在每天下午2点到下午2:05期间的每1分钟触发 
+                            <br>"0 10,44 14 ? 3 WED" 每年三月的星期三的下午2:10和2:44触发
+                            <br>"0 15 10 ? * MON-FRI" 周一至周五的上午10:15触发
+                            <br>"0 15 10 15 * ?" 每月15日上午10:15触发 
+                            <br>"0 15 10 L * ?" 每月最后一日的上午10:15触发
+                            <br>"0 15 10 ? * 6L" 每月的最后一个星期五上午10:15触发
+                            <br>"0 15 10 ? * 6L 2002-2005" 2002年至2005年的每月的最后一个星期五上午10:15触发 
+                            <br>"0 15 10 ? * 6#3" 每月的第三个星期五上午10:15触发
+                        </div>
+        			</div>
+                </div>
+        	</div>
+        </div>
+        <!--树选择框 基础lib包 -->
+        <script type="text/javascript" src="/script/project/worker/workerTypeTree.js"></script>
+		#parse("/WEB-INF/vm/common/footer.vm") 
+	</body>
+</html>
+

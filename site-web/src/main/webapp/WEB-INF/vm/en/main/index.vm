@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    #parse("/WEB-INF/vm/en/common/head.vm")
+    <body>
+		<div class="wrapper">
+    		#parse("/WEB-INF/vm/en/common/bhead.vm")
+			<div class="bodywrapper">
+				<div class="static-box">
+    				<div class="static-block">
+    					<div class="banner">
+                          <div class="scroll-img">
+                            <div><a href="#"><img src="$projectUrl.getUrl("/webresource/uploads/image-static1.jpg")"/></a></div>
+							<div><a href="#"><img src="$projectUrl.getUrl("/webresource/uploads/image-static2.jpg")"/></a></div>
+							<div><a href="#"><img src="$projectUrl.getUrl("/webresource/uploads/image-static3.jpg")"/></a></div>
+                          </div>
+                          <ul class="scroll-num">
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                          </ul>
+    					</div>
+                    </div>
+    				<div class="static-text">
+                      <h3>Welcome To LINKtoCHINA</h3>
+                      <p></p>
+    				  <p>LINKtoCHINA Consulting is a Chinese company (in the legal form of a Partnership) founded in 2011 by Swiss citizens, based in Beijing with a good network of connections among European financial institutions (in particular in Switzerland).</p>
+    				  <a class="button" href="aboutUs.ac"><span>more</span></a>
+                    </div>
+                </div>
+				<div class="clear"></div>
+    			<div class="featuresbox">
+    				<ul>
+                        <li class="first">
+    						<h4><a href="#">Specific market research and advisory</a></h4>
+							<!--
+    						<p>in Europe in order to find direct investment opportunities (for Private equity funds) in European companies</p>
+							-->
+                        </li>
+    					<li>
+    						<h4><a href="#">Specific market research and advisory</a></h4>
+							<!--
+    						<p>in Europe in order to find indirect (quoted) investment opportunities in the Capital markets, and Stock markets (Asset management)</p>
+							-->
+                        </li>
+    					<li>
+    						<h4><a href="#">Follow-up of the investment</a></h4>
+							<!--
+    						<p>in direct and indirect investments in order to inform our customers daily on the evolution of the investments </p>
+							-->
+                        </li>
+    					<li>
+    						<h4><a href="#">Teaching activity</a></h4>
+							<!--
+    						<p>targeted at young professionals willing to understand the basis of the Swiss Style Private Banking</p>
+							-->
+                        </li>
+    				</ul>
+    			</div>
+    			<div class="clear"></div>
+				<div class="main-box">
+                    <div class="maincontent">
+    					<h3></h3>
+    					<p></p>
+    					<h4>Our Philosophy</h4>
+                        <p>The European financial market is complex for different reasons:</p>
+                            <p class="s">-different countries with different legislations</p>
+							<p class="s">-different languages</p>
+							<p class="s">-different operating systems, etc</p>
+							<p class="s">-different financial sector structures</p>
+						<p>To understand and operate (seize the opportunities) in the European financial market is not an easy task. We offer to our Chinese customers (institutional and private) the opportunity to experience this market together with us. We will assist (in China and in Europe) our Chinese customers in: </p>
+							<p class="s">-Different fields:</p>
+							<p class="s">Indirect investment (Stock and Capital market), Direct investment (non-quoted companies – for private equity funds), Swiss Style Private Banking, Real estate investment</p>
+							<p class="s">-Different ways:</p>
+							<p class="s">Researching , Acting, Teaching , Organising VIP and training trips, Meeting people</p>
+						<h4>We focus on Chinese</h4>
+                            <p class="s">-Small and medium Investment funds</p>
+							<p class="s">-Small and medium Private equity funds</p>
+							<p class="s">-Family offices </p>
+							<p class="s">-and private individuals</p>
+							<p class="s">willing to know, understand and enter the European financial and real estate markets</p>
+					</div>
+    				<div class="sidebar">
+    					#parse("/WEB-INF/vm/en/common/mailBox.vm")
+    				</div>
+                </div>
+				<div class="clear"></div>
+            </div>
+			<div class="bottomwrapper"></div>
+    		#parse("/WEB-INF/vm/en/common/bfooter.vm")
+        </div>
+<!--图片切换-->
+<script type="text/javascript">	
+$(function(){
+	var n = 0,
+		_imgs = $("div.scroll-img>div"),
+		_nums = $(".scroll-num>li"),
+		count = _imgs.length;
+	_nums.eq(0).addClass("on");
+	_imgs.eq(0).siblings().hide();
+	_nums.click(function(){
+		var i = $(this).index();
+		n = i;		
+		_imgs.eq(i).fadeIn().siblings().hide();
+		$(this).addClass("on").siblings().removeClass("on");
+	});
+	var t = setInterval(function(){
+		_nums.eq(n).trigger('click');
+		++n >= count? n=0 : n=n;
+	}, 3000);
+	$("div.banner").hover(function(){clearInterval(t)}, function(){t = setInterval(function(){
+		_nums.eq(n++).trigger('click');
+		++n >= count? n=0 : n=n;
+	}, 3000);})
+})
+</script>
+<!--图片切换-->
+	</body>
+</html>

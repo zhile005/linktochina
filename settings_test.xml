@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd"
+          xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <profiles>
+        <profile>
+	    	<id>development</id>
+			<properties>
+		        <!-- log日志 -->
+				<log.level>DEBUG</log.level>
+				<log.path>/opt/home/oa/tomcatRoot</log.path>
+				<!--系统域名  -->
+				<domain.name>www.oa.com</domain.name>
+				<!-- struts 开发模式设置 -->
+				<struts.devMode>true</struts.devMode>
+    		</properties>
+   		</profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>development</activeProfile>
+    </activeProfiles>
+</settings>

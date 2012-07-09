@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName">
+
+<!--	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">-->
+<!--		<property name="jndiName" value="java:comp/env/jdbc/ifms" />-->
+<!--		<property name="expectedType" value="javax.sql.DataSource" />-->
+<!--	</bean>-->
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/oa"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="classpath:sqlmap-config.xml" />
+	</bean>
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"/>
+	
+	<bean id="simpleMailSender" class="com.oa.common.util.SimpleMailSender">
+		<property name="mailServerHost" value="smtp.yeah.net"/>
+		<property name="mailServerPort" value="25"/>
+		<property name="fromAddress" value="edward_linktochina@yeah.net"/>
+		<property name="userName" value="edward_linktochina"/>
+		<property name="password" value="yinqingmengxue"/>
+	</bean>
+</beans>

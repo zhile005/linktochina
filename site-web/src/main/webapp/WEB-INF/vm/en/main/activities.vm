@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    #parse("/WEB-INF/vm/en/common/head.vm")
+    <body>
+		<div class="wrapper">
+    		#parse("/WEB-INF/vm/en/common/bhead.vm")
+			<div class="bodywrapper">
+				<div class="static-box">
+    				<div class="heading-text">
+                      <h3>Activities</h3>
+                      <p></p>
+                    </div>
+    				<div class="page-heading">
+						<img alt="" src="$projectUrl.getUrl("/webresource/uploads/page-heading1.jpg")">
+                    </div>
+                </div>
+				<div class="clear"></div>
+				<div class="main-box">
+                    <div class="maincontent">
+    					<!-- <h4>-详细的市场调研和咨询服务</h4> -->
+    					<p></p>
+    					<h4><a href="#">-Specific market research and advisory</a></h4>
+    					<p></p>
+    					<p>in Europe in order to find direct investment opportunities (for Private equity funds) in European companies</p>
+    					<h4><a href="#">-Specific market research and advisory</a></h4>
+    					<p></p>
+    					<p>
+    						in Europe in order to find indirect (quoted) investment opportunities in the Capital markets, and Stock markets (Asset management)
+    					</p>
+						<h4><a href="#">-Follow-up of the investment</a></h4>
+    					<p></p>
+    					<p>
+    						in direct and indirect investments in order to inform our customers daily on the evolution of the investments 
+    					</p>
+						<h4><a href="#">-Introduction of our Chinese customers</a></h4>
+    					<p></p>
+    					<p>
+    						to European (Swiss in particular) financial institutions, based on the individual needs 
+    					</p>
+						<h4><a href="#">-Follow-up of the economic and financial events in Europe</a></h4>
+    					<p></p>
+    					<p>
+    						for Chinese financial institutions willing to be informed of what is happening on the European financial markets in order to set up an appropriate Investment policy (in particular for the asset management activities). 
+    					</p>
+						<h4><a href="#">-Teaching activity</a></h4>
+    					<p></p>
+    					<p>
+    						targeted at young professionals willing to understand the basis of the Swiss Style Private Banking
+    					</p>
+						<h4><a href="#">-Organising</a></h4>
+    					<p></p>
+    					<p>
+    						in collaboration with professional travel agencies, VIP and professional training trips (financial, legal, real estate, etc.) to Europe (Switzerland in particular)
+    					</p>
+    				</div>
+    				<div class="sidebar">
+    					<!--div class="sidebar">
+        					<div class="nospace">
+        						<div class="sidebartop"></div>
+								<div class="sidebarmain">
+        							<div class="sidebarcontent">
+        								<h4 class="sidebarheading">服务</h4>
+                						<ul class="sidelist">
+                                            <li><a href="#">Your Name1</a></li>
+											<li><a href="#">Your Name2</a></li>
+											<li><a href="#">Your Name3</a></li>
+                                        </ul>
+        							</div>
+                                </div>
+    							<div class="sidebarbottom"></div>
+                            </div>
+        				</div -->
+						<div class="sidebar">
+        					#parse("/WEB-INF/vm/en/common/mailBox.vm")
+        				</div>
+    				</div>
+                </div>
+				<div class="clear"></div>
+            </div>
+			<div class="bottomwrapper"></div>
+    		#parse("/WEB-INF/vm/en/common/bfooter.vm")
+        </div>
+	</body>
+</html>

@@ -1,0 +1,9 @@
+	<div class="nospace">
+		<div class="sidebartop"></div>
+		<div class="sidebarmain">
+			<div class="sidebarcontent">
+				#parse("/WEB-INF/vm/ch/common/mail.vm")
+			</div>
+        </div>
+		<div class="sidebarbottom"></div>
+    </div>

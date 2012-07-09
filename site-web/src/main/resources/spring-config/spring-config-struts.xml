@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName">
+
+    <bean name="velocityTools" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="stringUtils">
+                    <bean class="org.apache.commons.lang.StringUtils"/>
+                </entry>
+                <entry key="stringEscapeUtils">
+                    <bean class="org.apache.commons.lang.StringEscapeUtils"/>
+                </entry>
+                <entry key="dateUtils">
+                    <bean class="org.apache.commons.lang.time.DateUtils"/>
+                </entry>
+                <entry key="numFormat">
+                    <bean class="com.oa.common.util.NumFormat"/>
+                </entry>
+                <entry key="amountFormat">
+                    <bean class="com.oa.common.util.AmountUtil"/>
+                </entry>
+                <entry key="projectUrl">
+                    <bean class="com.oa.common.util.UrlUtil">
+                    </bean>
+                </entry>
+            </map>
+        </constructor-arg>
+    </bean>
+</beans>

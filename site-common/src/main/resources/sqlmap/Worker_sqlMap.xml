@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="WORKER">
+	<typeAlias alias="worker" type="com.oa.common.pojo.Worker" />
+	<typeAlias alias="workerContent" type="com.oa.common.pojo.WorkerContent" />
+	<resultMap id="workerMap" class="worker">
+		<!-- 主键 -->
+		<result property="workerId" column="WORKER_ID" />
+		<!-- worker编码 -->
+		<result property="workerTypeCode" column="WORKER_TYPE_CODE" />
+		<!-- work类型 -->
+		<result property="wtype" column="WTYPE" />
+		<!-- 关联单据号 -->
+		<result property="refOreders" column="REF_OREDERS" />
+		<!-- 失败次数 -->
+		<result property="failMaxNum" column="FAIL_MAX_NUM" />
+		<!-- 超时时间 -->
+		<result property="passTime" column="PASS_TIME" />
+		<!-- 状态 -->
+		<result property="workerStatus" column="WORKER_STATUS" />
+		<!-- 预占应用名 -->
+		<result property="appLogo" column="APP_LOGO" />
+		<!-- 是否有效 -->
+		<result property="yn" column="YN" />
+		<!-- 执行结果信息 -->
+		<result property="msg" column="MSG" />
+		<!-- 建立时间 -->
+		<result property="createTime" column="CREATE_TIME" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UPDATE_TIME" />
+	</resultMap>
+	<resultMap id="workerContentMap" class="workerContent">
+		<!-- workId -->
+		<result property="workerId" column="WORKER_ID" />
+		<!-- worker内容 -->
+		<result property="workerContent" column="WORKER_CONTENT" />
+		<!-- 建立时间 -->
+		<result property="createTime" column="CREATE_TIME" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UPDATE_TIME" />
+	</resultMap>
+	<select id="getByCustSql" resultClass="java.util.HashMap" remapResults="true"
+		parameterClass="java.lang.String">
+		$sql$
+	</select>
+	<select id="getObjectByPk" resultMap="workerMap" parameterClass="java.lang.Integer">
+		SELECT WORKER_ID
+			,WORKER_TYPE_CODE
+			,WTYPE
+			,REF_OREDERS
+			,FAIL_MAX_NUM
+			,PASS_TIME
+			,WORKER_STATUS
+			,APP_LOGO
+			,YN
+			,MSG
+			,CREATE_TIME
+			,UPDATE_TIME
+		FROM OA_WORKER T
+		WHERE WORKER_ID = #workerId#
+    </select>
+	<select id="getWorkerContent" resultMap="workerContentMap"
+		parameterClass="java.lang.Integer">
+		SELECT WORKER_ID
+			,WORKER_CONTENT
+			,CREATE_TIME
+			,UPDATE_TIME
+		FROM OA_WORKER_CONTENT T
+		WHERE WORKER_ID = #workerId#
+	</select>
+	<select id="checkExistsTask" resultClass="int" parameterClass="java.lang.String">
+		SELECT COUNT(WORKER_ID) AS num
+		FROM OA_WORKER T
+		WHERE WORKER_TYPE_CODE = #workTypeId#
+    </select>
+	<update id="lockWorkerList" parameterClass="java.util.Map">
+		UPDATE OA_WORKER
+		SET WORKER_STATUS = #lockedWorkerStatus#
+			,APP_LOGO = #appLogo#
+			,UPDATE_TIME = NOW()
+		WHERE WORKER_STATUS = #readyWorkerStatus#
+			AND WORKER_TYPE_CODE = #workerTypeCode#
+		LIMIT 20 
+  	</update>
+	<select id="getWorkerListLocked" resultMap="workerMap"
+		parameterClass="java.util.Map">
+		SELECT T.WORKER_ID
+			,T.WORKER_TYPE_CODE
+			,T.WTYPE
+			,T.REF_OREDERS
+			,T.FAIL_MAX_NUM
+			,T.PASS_TIME
+			,T.WORKER_STATUS
+			,T.APP_LOGO
+			,T.YN
+			,T.MSG
+			,T.CREATE_TIME
+			,T.UPDATE_TIME
+		FROM OA_WORKER T
+			JOIN OA_WORKER_TYPE wt ON wt.WORKER_TYPE_CODE = T.WORKER_TYPE_CODE
+			WHERE T.WORKER_TYPE_CODE = #workerTypeCode#
+			AND T.APP_LOGO = #appLogo#
+			AND (<![CDATA[(T.FAIL_MAX_NUM < wt.FAIL_MAX_NUM AND T.WORKER_STATUS = #failedWorkerStatus#)]]>
+				OR T.WORKER_STATUS = #lockedWorkerStatus#
+			)
+	</select>
+	<update id="updateWorkerStatus2Msg" parameterClass="worker">
+		UPDATE OA_WORKER
+		SET UPDATE_TIME = NOW()
+		<isNotEmpty property="refOreders">
+			,REF_OREDERS = #refOreders#
+        </isNotEmpty>
+		,FAIL_MAX_NUM = FAIL_MAX_NUM + 1
+		,WORKER_STATUS = #workerStatus#
+		<isNotEmpty property="msg">
+			,MSG = #msg#
+        </isNotEmpty>
+		WHERE WORKER_ID = #workerId#
+	</update>
+	<update id="reduceWorkerFallnum" parameterClass="java.util.Map">
+		<![CDATA[ 
+		UPDATE OA_WORKER
+		SET FAIL_MAX_NUM = FAIL_MAX_NUM - 1,
+			UPDATE_TIME = NOW()
+		WHERE WORKER_ID = #workerId# AND FAIL_MAX_NUM > 1 AND WORKER_STATUS = #failStatus#
+		 ]]>
+  	</update>
+	<insert id="saveWorker" parameterClass="worker">
+		<selectKey resultClass="java.lang.Integer" keyProperty="workerId">
+		INSERT INTO OA_WORKER(
+			WORKER_TYPE_CODE
+			,WTYPE
+			,REF_OREDERS
+			,FAIL_MAX_NUM
+			,PASS_TIME
+			,WORKER_STATUS
+			,APP_LOGO
+			,YN
+			,MSG
+			,CREATE_TIME
+			,UPDATE_TIME)
+		VALUES(
+			#workerTypeCode#
+			,#wtype#
+			,#refOreders#
+			,#failMaxNum#
+			,#passTime#
+			,#workerStatus#
+			,#appLogo#
+			,#yn#
+			,#msg#
+			,NOW()
+			,NOW()
+		)
+		<![CDATA[ SELECT LAST_INSERT_ID() AS WORKER_ID ]]>
+		</selectKey>
+	</insert>
+	<insert id="saveWorkerContent" parameterClass="workerContent">
+		INSERT INTO OA_WORKER_CONTENT(
+			WORKER_ID
+			,WORKER_CONTENT
+			,CREATE_TIME
+			,UPDATE_TIME
+		)
+		VALUES(
+			#workerId#
+			,#workerContent#
+			,NOW()
+			,NOW()
+		)
+  	</insert>
+	<sql id="dynamic_para">
+		<dynamic prepend="where">
+			<isNotEmpty prepend="and" property="workerId">
+				WORKER_ID = #workerId#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="workerTypeCode">
+				WORKER_TYPE_CODE = #workerTypeCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="wtype">
+				WTYPE = #wtype#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="refOreders">
+				REF_OREDERS = #refOreders#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="workerStatus">
+				WORKER_STATUS = #workerStatus#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="createTime">
+				<![CDATA[ CREATE_TIME > #createTime# and CREATE_TIME -1  < #createTime# ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="msg">
+				MSG LIKE #msg#+'%'
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+	<select id="getPageCountByPara" resultClass="int"
+		parameterClass="java.util.Map">
+		SELECT COUNT(1) VALUE FROM OA_WORKER T
+		<include refid="dynamic_para" />
+	</select>
+	<sql id="column_sql">
+		WORKER_ID
+		,WORKER_TYPE_CODE
+		,WTYPE
+		,REF_OREDERS
+		,FAIL_MAX_NUM
+		,PASS_TIME
+		,WORKER_STATUS
+		,APP_LOGO
+		,YN
+		,MSG
+		,CREATE_TIME
+		,UPDATE_TIME
+    </sql>
+	<select id="getPageDateByPara" resultMap="workerMap"
+		parameterClass="java.util.Map">
+		SELECT <include refid="column_sql" />
+		FROM  OA_WORKER T LIMIT #startNum#,#endNum#
+		<include refid="dynamic_para" />
+	</select>
+</sqlMap>

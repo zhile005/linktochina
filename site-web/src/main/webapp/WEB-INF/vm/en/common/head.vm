@@ -1,0 +1,20 @@
+<head>
+	<title>#if($title)$title#else LINKtoCHINA Consulting is a Chinese company (in the legal form of a Partnership) founded in 2011 by Swiss citizens, based in Beijing with a good network of connections among European financial institutions (in particular in Switzerland). #end</title>
+    <link rel="stylesheet" type="text/css" href="$projectUrl.getUrl("/script/jquery-ui-redmond/css/redmond/jquery-ui-1.8.16.custom.css")"/>
+    <link rel="stylesheet" type="text/css" href="$projectUrl.getUrl("/webresource/skin/default/style.css")"/>
+	<link rel="stylesheet" type="text/css" href="$projectUrl.getUrl("/webresource/skin/default/style-append.css")"/>
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/jquery-1.7.min.js")"></script>
+	<!--WdatePicker lib包 -->
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/My97DatePicker/WdatePicker.js")"></script>
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/project/common/base.js?version=1.0")"></script>
+    <script type="text/javascript" src="$projectUrl.getUrl("/script/project/common/validate.js")"></script>
+	<!--jquery-ui lib包 -->
+    <script type="text/javascript" src="$projectUrl.getUrl("/script/jquery-ui-redmond/js/jquery-ui-1.8.16.custom.min.js")"></script>
+	<!--jsTree lib包 -->
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/jstree/jquery.jstree.1.0_rc3.js")"></script>
+	<!--baseTree lib包 -->
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/project/common/baseTree.js")"></script>
+	<!--自定义的jquery插件 lib包 -->
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/project/common/jQueryPlugins.js")"></script>
+	<script type="text/javascript" src="$projectUrl.getUrl("/script/project/common/waiting.js")"></script>
+</head>

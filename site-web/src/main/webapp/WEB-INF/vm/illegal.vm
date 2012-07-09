@@ -1,0 +1,7 @@
+#* @vtlvariable name="resources" type="java.lang.String[]" *#
+您没有权限访问该页面，该页面需要以下权限
+<ul>
+    #foreach($resource in $resources)
+    <li>$resource</li>
+    #end
+</ul>

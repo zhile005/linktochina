@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    #parse("/WEB-INF/vm/ch/common/head.vm")
+    <body>
+		<div class="wrapper">
+    		#parse("/WEB-INF/vm/ch/common/bhead.vm")
+			<div class="bodywrapper">
+				<div class="static-box">
+    				<div class="static-block">
+    					<div class="banner">
+                          <div class="scroll-img">
+                            <div><a href="#"><img src="$projectUrl.getUrl("/webresource/uploads/image-static1.jpg")"/></a></div>
+							<div><a href="#"><img src="$projectUrl.getUrl("/webresource/uploads/image-static2.jpg")"/></a></div>
+							<div><a href="#"><img src="$projectUrl.getUrl("/webresource/uploads/image-static3.jpg")"/></a></div>
+                          </div>
+                          <ul class="scroll-num">
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                          </ul>
+    					</div>
+                    </div>
+    				<div class="static-text">
+                      <h3>欢迎来到  LINK to CHINA</h3>
+                      <p></p>
+    				  <p>北京链接咨询事务所（LinkToChina Consulting Partnership）是由瑞士和中国合伙人于2011年在北京成立的一家外商投资合伙制企业，总部设立在北京和瑞士，公司业务主要涉及金融理财、私募、境外理财、境外房地产、高档时装品牌、私家游艇、红酒等。公司在欧洲有充足的金融领域关系、团队成员经验丰富，给您未来的工作中提供高品质的服务。</p>
+    				  <a class="button" href="aboutUs.ac"><span>更多</span></a>
+                    </div>
+                </div>
+				<div class="clear"></div>
+    			<div class="featuresbox">
+    				<ul>
+                        <li class="first">
+    						<h4><a href="#">市场调研</a></h4>
+    						<p>我们为客户提供在欧洲更方便快捷的直投机会(私募基金),建立与欧洲公司的链接</p>
+                        </li>
+    					<li>
+    						<h4><a href="#">咨询服务</a></h4>
+    						<p>我们为客户直接或者间接的在欧洲资本市场找到更多投资机会(资本运作)</p>
+                        </li>
+    					<li>
+    						<h4><a href="#">投资管理</a></h4>
+    						<p>直接投资或者间接投资，我们每天会告知投资者发生在欧洲的金融信息</p>
+                        </li>
+    					<li>
+    						<h4><a href="#">教学活动</a></h4>
+    						<p>我们针对有意愿了解学习更多关于基础瑞士风格私人银行及理财的年轻的专业人士</p>
+                        </li>
+    				</ul>
+    			</div>
+    			<div class="clear"></div>
+				<div class="main-box">
+                    <div class="maincontent">
+    					<h3></h3>
+    					<p></p>
+    					<h4>我们的理念</h4>
+                        <p>欧洲金融市场之所以被认为复杂因为：</p>
+                            <p class="s">-不同的国家拥有同的不法律法令</p>
+							<p class="s">-不同的语言</p>
+							<p class="s">-不同的操作系统平台</p>
+							<p class="s">-不同的金融机构和结构组成</p>
+						<p>如何理解并且运作（把握机会）在欧洲金融市场并不是一件容易的事情。我们提供给中国客户（机构、公司、企业、个人）更多的机会和我们一起去体验这个市场。我们将会协助并且指导我们的中国客户（在中国和欧洲），譬如：</p>
+							<p class="s">-不同的领域：</p>
+							<p class="s">间接形式的投资（股市），直接投资（非上市公司-私募基金），瑞士风格私人银行、理财、房地产投资。</p>
+							<p class="s">-不同的方式：</p>
+							<p class="s">研究讨论、代理、教学、管理及筹备高级VIP客户，提供培训考察、会务相关客户。</p>
+						<h4>我们专注于中国的</h4>
+                            <p class="s">-中小型投资基金</p>
+							<p class="s">-中小型私募基金</p>
+							<p class="s">-家庭服务套餐 Family VIP </p>
+							<p class="s">-个人等</p>
+							<p class="s">愿意更多的了解、理解并有意进入欧洲金融领域和房地产市场的客户</p>
+					</div>
+    				<div class="sidebar">
+    					#parse("/WEB-INF/vm/ch/common/mailBox.vm")
+    				</div>
+                </div>
+				<div class="clear"></div>
+            </div>
+			<div class="bottomwrapper"></div>
+    		#parse("/WEB-INF/vm/ch/common/bfooter.vm")
+        </div>
+<!--图片切换-->
+<script type="text/javascript">	
+$(function(){
+	var n = 0,
+		_imgs = $("div.scroll-img>div"),
+		_nums = $(".scroll-num>li"),
+		count = _imgs.length;
+	_nums.eq(0).addClass("on");
+	_imgs.eq(0).siblings().hide();
+	_nums.click(function(){
+		var i = $(this).index();
+		n = i;		
+		_imgs.eq(i).fadeIn().siblings().hide();
+		$(this).addClass("on").siblings().removeClass("on");
+	});
+	var t = setInterval(function(){
+		_nums.eq(n).trigger('click');
+		++n >= count? n=0 : n=n;
+	}, 3000);
+	$("div.banner").hover(function(){clearInterval(t)}, function(){t = setInterval(function(){
+		_nums.eq(n++).trigger('click');
+		++n >= count? n=0 : n=n;
+	}, 3000);})
+})
+</script>
+<!--图片切换-->
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<form id="postForm" action="sendMail.ac" method="post">
+    <p>您的名字 <span forName="name">(必填)</span><br/><input type="text" value="" id="name"/></p>
+	<p>您的邮箱 <span forName="toAddress">(必填)</span><br/><input type="text" value="" id="toAddress"/></p>
+	<p>您的主题 <span forName="subject">(必填)</span><br/><input type="text" value="" id="subject"/></p>
+	<p>您的留言 <span forName="content">(必填)</span><br/><textarea rows="10" cols="22" id="content"></textarea></p>
+	<p><input type="button" id="sendMail" class="wpcf7-form-control  wpcf7-submit" value="发送"></p>
+</form>
+<script type="text/javascript">
+	$(function(){
+		$("#sendMail").bind('click',function(){
+			var pass = true;
+			$("#postForm").find('span').removeClass("warningText");
+			$("#postForm").find("input[type='text'],textarea").each(function(index,dom){
+				if($(dom).val() == ''){
+					$('span[forName="'+$(dom).attr('id')+'"]').addClass("warningText");
+					pass = false;
+				}
+			});
+			if(pass == false)return;
+    		var thiz = $(this);
+    		thiz.showRuningMsg();
+			jQuery.ajax({
+    		   	type: "POST",
+    		   	url: "sendMail.ac?_charset_=utf-8",
+    		   	dataType:"json",
+				data:{'mailInfo.name':$("#name").val(),
+					'mailInfo.toAddress':$("#toAddress").val(),
+					'mailInfo.subject':$("#subject").val(),
+					'mailInfo.content':$("#content").val()
+				},
+    		   	success: function(data, textStatus){
+    		   		//查询出结果
+    		   		if(data.success == true){
+    		   			alert('已经提交成功，欢迎您!');
+						$("#name").val("");
+						$("#toAddress").val("")
+						$("#subject").val("")
+						$("#content").val("")
+    		   		}else if(data.errorCode == '001'){
+    		   			alert("请检查邮件地址是否有误");
+    		   		}else{
+    		   			alert('服务器正忙，请稍后再试');
+    		   		}
+    		   		thiz.removeRuningMsg();
+    		   	},
+    		   	error:function (XMLHttpRequest, textStatus, errorThrown) {
+    		   		alert('服务器正忙，请稍后再试');
+    		   		thiz.removeRuningMsg();
+    			}
+    		});
+		});
+	});
+</script>

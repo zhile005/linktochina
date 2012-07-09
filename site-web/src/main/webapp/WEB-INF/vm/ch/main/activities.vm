@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    #parse("/WEB-INF/vm/ch/common/head.vm")
+    <body>
+		<div class="wrapper">
+    		#parse("/WEB-INF/vm/ch/common/bhead.vm")
+			<div class="bodywrapper">
+				<div class="static-box">
+    				<div class="heading-text">
+                      <h3>我们的服务</h3>
+                      <p></p>
+                    </div>
+    				<div class="page-heading">
+						<img alt="" src="$projectUrl.getUrl("/webresource/uploads/page-heading1.jpg")">
+                    </div>
+                </div>
+				<div class="clear"></div>
+				<div class="main-box">
+                    <div class="maincontent">
+    					<!-- <h4>-详细的市场调研和咨询服务</h4> -->
+    					<p></p>
+    					<h4><a href="#">-详细的市场调研和咨询服务</a></h4>
+    					<p></p>
+    					<p>我们为客户提供在欧洲更方便快捷的直投机会（私募基金），建立与欧洲公司的链接</p>
+    					<h4><a href="#">-详细的市场调研和咨询服务</a></h4>
+    					<p></p>
+    					<p>
+    						我们为客户直接或者间接的在欧洲资本市场找到更多投资机会（资本运作）
+    					</p>
+						<h4><a href="#">-后续投资 投资管理</a></h4>
+    					<p></p>
+    					<p>
+    						直接投资或者间接投资，我们每天会告知投资者发生在欧洲的金融信息
+    					</p>
+						<h4><a href="#">-我们的中国客户简介</a></h4>
+    					<p></p>
+    					<p>
+    						基于个性化的需求，我们会向欧洲的金融机构介绍我们的中国客户（特别是瑞士）
+    					</p>
+						<h4><a href="#">-欧洲经济和金融事场概况及应对	</a></h4>
+    					<p></p>
+    					<p>
+    						我们为中国的投资者提供各种欧洲动态服务和任何时间在欧洲金融和经济市场发生的变动，如果客户需要这个服务的话。有效的为中国投资客户提供并且建立一个适当的投资政策（特别针对于资产管理）
+    					</p>
+						<h4><a href="#">-教学活动</a></h4>
+    					<p></p>
+    					<p>
+    						我们针对有意愿了解学习更多关于基础瑞士风格私人银行及理财的年轻的专业人士
+    					</p>
+						<h4><a href="#">-筹备工作</a></h4>
+    					<p></p>
+    					<p>
+    						我们与专业的旅行服务中介，VIP客户以及专业训练调研旅行（金融理财，法律，房地产等）合作，提供欧洲旅行（特别推荐瑞士）
+    					</p>
+    				</div>
+    				<div class="sidebar">
+    					<!--div class="sidebar">
+        					<div class="nospace">
+        						<div class="sidebartop"></div>
+								<div class="sidebarmain">
+        							<div class="sidebarcontent">
+        								<h4 class="sidebarheading">服务</h4>
+                						<ul class="sidelist">
+                                            <li><a href="#">Your Name1</a></li>
+											<li><a href="#">Your Name2</a></li>
+											<li><a href="#">Your Name3</a></li>
+                                        </ul>
+        							</div>
+                                </div>
+    							<div class="sidebarbottom"></div>
+                            </div>
+        				</div -->
+						<div class="sidebar">
+        					#parse("/WEB-INF/vm/ch/common/mailBox.vm")
+        				</div>
+    				</div>
+                </div>
+				<div class="clear"></div>
+            </div>
+			<div class="bottomwrapper"></div>
+    		#parse("/WEB-INF/vm/ch/common/bfooter.vm")
+        </div>
+	</body>
+</html>

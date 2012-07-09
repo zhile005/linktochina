@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="${struts.devMode}"/>
+    <constant name="struts.objectFactory" value="spring"/>
+    <constant name="struts.objectFactory.spring.autoWire " value="type"/>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <constant name="struts.custom.i18n.resources" value="message/message"/>
+    <constant name="struts.action.extension" value="action,ac"/>
+
+    <package name="stock-default1" extends="struts-default"  >
+    	<result-types>
+    		<result-type name="velocity" class="com.oa.common.VelocityLayoutResult" default="true"/>
+    	</result-types>
+        <global-results>
+            <result name="exception">/WEB-INF/vm/error.vm</result>
+			<result name="error">/WEB-INF/vm/error.vm</result>
+			<result name="login_error">/WEB-INF/vm/loginerror.vm</result>
+			<result name="login" type="redirect">${loginUrl}</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="exception"/>
+        </global-exception-mappings>
+    </package>
+	<package name="stock-default" namespace="/" extends="stock-default1">
+		<interceptors>
+	        <interceptor name="cacheInterceptor" class="com.oa.common.interceptor.CacheInterceptor" />
+			<interceptor-stack name="strutsDefaultStack">
+				<interceptor-ref name="exception" />
+				<interceptor-ref name="alias" />
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="debugging" />
+				<interceptor-ref name="scopedModelDriven" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="fileUpload">
+					<param name="maximumSize">4194304</param>
+					<param name="allowedTypes">image/x-png,image/png,image/gif,image/jpeg,image/jpg,image/pjpeg</param>
+					<param name="allowedExtensions">jpg,jpeg,png,gif,txt</param>
+				</interceptor-ref>
+				<interceptor-ref name="checkbox" />
+				<interceptor-ref name="multiselect" />
+				<interceptor-ref name="staticParams" />
+				<interceptor-ref name="actionMappingParams" />
+				<interceptor-ref name="params">
+					<param name="excludeParams">dojo\..*,^struts\..*,.*\\u0023.*</param>
+				</interceptor-ref>
+				<interceptor-ref name="conversionError" />
+				<interceptor-ref name="validation">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+				<interceptor-ref name="workflow">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+			</interceptor-stack>
+			<interceptor-stack name="adminInterceptor">
+				<interceptor-ref name="strutsDefaultStack" />
+			</interceptor-stack>
+			<interceptor-stack name="adminSecurityInterceptor">
+				<interceptor-ref name="adminInterceptor" />
+				<interceptor-ref name="cacheInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="adminSecurityInterceptor" />
+	</package>
+    <package name="json-protected-default" extends="stock-default">
+        <result-types>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
+        </result-types>
+        <interceptors>
+            <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+        </interceptors>
+        <global-results>
+        	<result name="jsonObject" type="json">
+		         <param name="root">jsonObject</param>
+            </result>
+			<result name="jsonGrid" type="json">
+		         <param name="root">jsonGrid</param>
+            </result>
+            <result name="jsonMap" type="json">
+	           	 <param name="root">jsonMap</param>
+            </result>
+        </global-results>
+    </package>
+   <include file="struts-config/struts-site.xml"/>
+   <include file="struts-config/struts-worker.xml"/>
+</struts>

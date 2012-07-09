@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    #parse("/WEB-INF/vm/ch/common/head.vm")
+    <body>
+		<div class="wrapper">
+    		#parse("/WEB-INF/vm/ch/common/bhead.vm")
+			<div class="bodywrapper">
+				<div class="static-box">
+    				<div class="heading-text">
+                      <h3>关于我们</h3>
+                      <p></p>
+                    </div>
+    				<div class="page-heading">
+						<img alt="" src="$projectUrl.getUrl("/webresource/uploads/page-heading1.jpg")">
+                    </div>
+                </div>
+				<div class="clear"></div>
+				<div class="main-box">
+                    <div class="maincontent">
+    					<h4>Mario Tettamanti</h4>
+    					<p>
+							• 经济学博士
+                            <br>
+                            • 瑞士籍
+                            <br>
+                            • 精通意大利语、法语、德语、英语和一点点中文
+							<p class="s2">马里奥先生是土生土长的瑞士人。他有着35年以上的银行业经历。（经济和金融研究，资产、财富管理）他曾经代表瑞士最大的银行UBS瑞联银行集团在卢加诺、苏黎世、伦敦和纽约工作。他曾作为瑞联银行金融财务部主管为客户管理资产达200多亿欧元。
+他认为在金融领域如果想工作的专业化，首先你需要拥有很多的知识技 能，譬如：经济理论知识、金融市场、金融产品知识、放松的心态和最后一点，许多的人际关系网。他享受和他的家人在一起的时光，喜欢和朋友在一起聊天、打网球、品味意大利和法国美食还有享受上等的红酒。马里奥在纳沙泰尔大学取得经济学和金融学双博士学位。
+							</p>
+						</p>
+    					<h4>尹青</h4>
+    					<p>
+							• 经济学硕士
+                            <br>
+                            • 精通英语、中文、意大利语、日语
+						</p>
+						<p class="s2">尹青有着出众的业务分析和问题解决等综合能力，使他在业务判断和战略思维上拥有为客户提供更好建议的能力。在此之前，他工作于新西兰TRE公司作为亚太地区的中国区总监。他有着6年以上的商业开发和管理经验。尹青曾经在新西兰7年，他毕业与新西兰的维多利亚大学的经济学硕士学位。在闲暇之余，他喜欢弹钢琴还有与朋友共同演唱无伴奏音乐歌曲。</p>
+						<h4>Simona Tettamanti</h4>
+    					<p>
+							• 经济艺术学硕士
+                            <br>
+                            • 瑞士籍
+                            <br>
+                            • 精通意大利语、英语、德语、法语和中文
+						</p>
+						<h4>叶萍</h4>
+    					<p>
+							• 人力资源学硕士
+                            <br>
+                            • 中国籍
+                            <br>
+                            • 精通英语、德语和中文
+						</p>
+    				</div>
+					<div class="sidebar">
+    					#parse("/WEB-INF/vm/ch/common/mailBox.vm")
+    				</div>
+                </div>
+				<div class="clear"></div>
+            </div>
+			<div class="bottomwrapper"></div>
+    		#parse("/WEB-INF/vm/ch/common/bfooter.vm")
+        </div>
+	</body>
+</html>

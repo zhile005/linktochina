@@ -1,0 +1,53 @@
+<form id="postForm" action="sendMail.ac" method="post">
+    <p>Your Name <span forName="name">(required)</span><br/><input type="text" value="" id="name"/></p>
+    <p>our Email <span forName="toAddress">(required)</span><br/><input type="text" value="" id="toAddress"/></p>
+    <p>Subject <span forName="subject">(required)</span><br/><input type="text" value="" id="subject"/></p>
+    <p>Your Message <span forName="content">(required)</span><br/><textarea rows="10" cols="22" id="content"></textarea></p>
+    <p><input type="button" id="sendMail" class="wpcf7-form-control  wpcf7-submit" value="发送"></p>
+</form>
+<script type="text/javascript">
+	$(function(){
+		$("#sendMail").bind('click',function(){
+			var pass = true;
+			$("#postForm").find('span').removeClass("warningText");
+			$("#postForm").find("input[type='text'],textarea").each(function(index,dom){
+				if($(dom).val() == ''){
+					$('span[forName="'+$(dom).attr('id')+'"]').addClass("warningText");
+					pass = false;
+				}
+			});
+			if(pass == false)return;
+    		var thiz = $(this);
+    		thiz.showRuningMsg();
+			jQuery.ajax({
+    		   	type: "POST",
+    		   	url: "sendMail.ac?_charset_=utf-8",
+    		   	dataType:"json",
+				data:{'mailInfo.name':$("#name").val(),
+					'mailInfo.toAddress':$("#toAddress").val(),
+					'mailInfo.subject':$("#subject").val(),
+					'mailInfo.content':$("#content").val()
+				},
+    		   	success: function(data, textStatus){
+    		   		if(data.success == true){
+    		   			alert('success，welcome!');
+						$("#name").val("");
+						$("#toAddress").val("")
+						$("#subject").val("")
+						$("#content").val("")
+    		   		}else if(data.errorCode == '001'){
+    		   			alert("please check [our Email] is right");
+    		   		}else{
+    		   			alert('busy,try it leater');
+    		   		}
+    		   		thiz.removeRuningMsg();
+    		   	},
+    		   	error:function (XMLHttpRequest, textStatus, errorThrown) {
+    		   		alert('busy,try it leater');
+    		   		thiz.removeRuningMsg();
+    			}
+    		});
+		});
+	});
+</script>
+

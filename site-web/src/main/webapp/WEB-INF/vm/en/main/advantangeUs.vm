@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    #parse("/WEB-INF/vm/en/common/head.vm")
+    <body>
+		<div class="wrapper">
+    		#parse("/WEB-INF/vm/en/common/bhead.vm")
+			<div class="bodywrapper">
+				<div class="static-box">
+    				<div class="heading-text">
+                      <h3>Our strengths</h3>
+                      <p></p>
+                    </div>
+    				<div class="page-heading">
+						<img alt="" src="$projectUrl.getUrl("/webresource/uploads/page-heading1.jpg")">
+                    </div>
+                </div>
+				<div class="clear"></div>
+				<div class="main-box">
+                    <div class="maincontent">
+    					<h4>We base our work on eight major factors:</h4>
+    					<p class="s2">-Common sense and wisdom </p>
+						<p class="s2">-Economics knowledge (PhD in economics)</p>
+						<p class="s2">-Historical knowledge of the European financial market (Capital, Stock and currency markets) based on more than 35 years in the economic and banking field: private banking, asset management,     investment policy, financial research</p>
+						<p class="s2">-Technical knowledge of the traditional and modern financial instruments (capital markets, stock markets, investment funds, hedge funds, private equity funds, direct investment in non-quoted companies), etc. </p>
+						<p class="s2">-The network of our European connections (from Beijing we are related to a net of financial institutions  like Banks, Family offices, Real estate companies, etc.)</p>
+						<p class="s2">-The freedom to choose the institutions (Banks, Family offices, Investment funds, etc.) and the financial instrumenst that we consider the best for our customers</p>
+						<p class="s2">-The skill to explain (to teach) the customers the theory of the reliable and less reliable (gambling) approach to financial investments </p>
+						<p class="s2">-The knowledge of the European countries and the most important European languages (English, German, French, Spanish and Italian languages) that gave us the opportunity to research in every country and in different fields.</p>
+    				</div>
+    				<div class="sidebar">
+    					#parse("/WEB-INF/vm/en/common/mailBox.vm")
+    				</div>
+                </div>
+				<div class="clear"></div>
+            </div>
+			<div class="bottomwrapper"></div>
+    		#parse("/WEB-INF/vm/en/common/bfooter.vm")
+        </div>
+	</body>
+</html>

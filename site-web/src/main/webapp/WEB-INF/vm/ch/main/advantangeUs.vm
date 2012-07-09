@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    #parse("/WEB-INF/vm/ch/common/head.vm")
+    <body>
+		<div class="wrapper">
+    		#parse("/WEB-INF/vm/ch/common/bhead.vm")
+			<div class="bodywrapper">
+				<div class="static-box">
+    				<div class="heading-text">
+                      <h3>我们的优势</h3>
+                      <p></p>
+                    </div>
+    				<div class="page-heading">
+						<img alt="" src="$projectUrl.getUrl("/webresource/uploads/page-heading1.jpg")">
+                    </div>
+                </div>
+				<div class="clear"></div>
+				<div class="main-box">
+                    <div class="maincontent">
+    					<h4>我们有八大要素让我们为您服务的更专业</h4>
+    					<p class="s2">-丰富的社会常识以及多年经验总结出的智慧精华</p>
+						<p class="s2">-经济金融知识（经济学博士）</p>
+						<p class="s2">-35年以上的经济和银行管理经验：私人银行、资产管理、投资政策及金融研究。欧洲金融市场丰富的历史知识（资本运作、股票以及货币市场）</p>
+						<p class="s2">-专业的技术知识理念运作在传统以及现今金融经济市场（资本市场、股票、投资基金、对冲基金、私募基金、直投及非上市公司）等</p>
+						<p class="s2">-我们在欧洲的关系网（我们与多家金融机构，譬如银行、家庭服务套餐Family VIP、房地产公司等等）</p>
+						<p class="s2">-完全自由开放的选择方案（银行，家族VIP，投资基金等），我们会从多方面考虑后提供最适合的金融投资方案供客户甄选</p>
+						<p class="s2">-从技术层面讲解（教学）给我们的客户最可信任的与最不可信任的方法以供参考。（风险控制）</p>
+						<p class="s2">-对于欧洲各国知识的了解和最重要的link to china拥有欧洲各国语言的能力（英语，德语，法语，西班牙语和意大利语），让我们有了更好的能力去深入的研究每个国家和每一个不同的领域。</p>
+    				</div>
+    				<div class="sidebar">
+    					#parse("/WEB-INF/vm/ch/common/mailBox.vm")
+    				</div>
+                </div>
+				<div class="clear"></div>
+            </div>
+			<div class="bottomwrapper"></div>
+    		#parse("/WEB-INF/vm/ch/common/bfooter.vm")
+        </div>
+	</body>
+</html>

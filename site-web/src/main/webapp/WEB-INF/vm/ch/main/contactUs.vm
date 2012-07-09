@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    #parse("/WEB-INF/vm/ch/common/head.vm")
+    <body>
+		<div class="wrapper">
+    		#parse("/WEB-INF/vm/ch/common/bhead.vm")
+			<div class="bodywrapper">
+				<div class="static-box">
+    				<div class="heading-text">
+                      <h3>联系我们</h3>
+                      <p></p>
+                    </div>
+    				<div class="page-heading">
+						<img alt="" src="$projectUrl.getUrl("/webresource/uploads/page-heading1.jpg")">
+                    </div>
+                </div>
+				<div class="clear"></div>
+				<div class="maincontent-full">
+                    <div class="conctactleft">
+						#parse("/WEB-INF/vm/ch/common/mail.vm")
+    				</div>
+    				<div class="contactright">
+						<ul class="contactinfo">
+                            <li>
+								A550室，5层 CBD国际大厦 永安东里16号 朝阳区
+								<b>北京市，中国</b>
+							</li>
+							<li>
+								<strong>固定电话</strong>: 010-65637640或65637641
+							</li>
+							<li>
+								<strong>手机</strong>: +86 13426226799
+							</li>
+							<li>
+								<strong>电子邮件</strong>:<a href="mailto:edward_linktochina@yeah.net">edward_linktochina@yeah.net</a><br>
+							</li>
+                        </ul>
+                        <div style="float:right;margin-top:80px">
+							<img src="$projectUrl.getUrl("/webresource/uploads/logo.png")" style="height:120px"/>
+						</div>
+    				</div>
+                </div>
+				<div class="clear"></div>
+            </div>
+			<div class="bottomwrapper"></div>
+    		#parse("/WEB-INF/vm/ch/common/bfooter.vm")
+        </div>
+	</body>
+</html>

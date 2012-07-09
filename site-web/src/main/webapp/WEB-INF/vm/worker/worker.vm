@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	#parse("/WEB-INF/vm/common/head.vm")
+	<body id="mainframe">
+		<div class='box'>
+    	<div class='title'>系统管理/worker管理</div>
+        <!--查询区-->
+        <div class='panel_search'>
+            <table class="table_two" id="postForm">
+                <tr>
+                    <th width="100px">任务编号</th>
+                    <td width="150px">
+                        <input type="text" id="workerId" name="workerId" value="" refType="int+"/>
+                    </td>
+    				<th width="100px">所属任务</th>
+                    <td width="150px">
+    					<select id="workerTypeCode">
+    						<option value="">全部</option>
+							#foreach($Worker in $WorkerEnum)
+    					    <option value="$Worker.workerTypeCode">$Worker.workerTypeName</option>
+							#end
+                        </select>
+                    </td>
+    				<th width="100px">任务类型</th>
+                    <td>
+    					<select id="wtype">
+    						<option value="">全部</option>
+							#foreach($WorkerType in $WorkerTypeEnum)
+    					    <option value="$WorkerType.value">$WorkerType.text</option>
+							#end
+                        </select>
+                    </td>
+                    <td class="panelSearch1" width="8%" rowspan="3">
+                        <input type="button" name="btnSearch" value="" id="btnSearch" onclick="search()"/>
+                    </td>
+                </tr>
+    			<tr>
+                    <th>关联原单号</th>
+                    <td>
+                        <input type="text" id="refOreders" value=""/>
+                    </td>
+    				<th>状态</th>
+                    <td>
+    					<select id="workerStatus">
+    						<option value="">全部</option>
+							#foreach($WorkerStatus in $WorkerStatusEnum)
+    					    <option value="$WorkerStatus.value">$WorkerStatus.text</option>
+							#end
+                        </select>
+                    </td>
+    				<th>建立时间</th>
+                    <td><input type="text" id="createTime" value=""/></td>
+                </tr>
+    			<tr>
+    				<th>消息</th>
+                    <td colspan="5"><input type="text" id="msg" value="" style="width:60%"/>localIp:$!localIp</td>
+                </tr>
+            </table>
+    		<div class='panel_grid' style="text-align:center;margin:5px auto;">
+    			<table class="" id="list2"></table>
+    			<div id="pager2"></div>
+            </div>
+    		<div style="display:none" id="sqlDiv">
+    			<table class="table_two">
+                    <tr>
+                        <td>
+    						<textarea id="sql" style="width:90%">$!sql</textarea>
+                        </td>
+                        <td width="8%">
+                            <input type="button" value="查询" id="sqlSearch"/>
+                        </td>
+                    </tr>
+                </table>
+    			<table class="table_date" id="sqlDate"></table>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" type="text/css" href="$projectUrl.getUrl("/webresource/jquery.jqGrid/ui.jqgrid.css")">
+    <!--jqGrid lib包 -->
+    <script type="text/javascript" src="$projectUrl.getUrl("/script/jquery.jqGrid/i18n/grid.locale-cn.js")"></script>
+    <script type="text/javascript" src="$projectUrl.getUrl("/script/jquery.jqGrid/jquery.jqGrid.min.js")"></script>
+    <script type="text/javascript" src="$projectUrl.getUrl("/script/project/worker/worker.js?version=1.0")"></script>
+	#parse("/WEB-INF/vm/common/footer.vm") 
+	</body>
+</html>

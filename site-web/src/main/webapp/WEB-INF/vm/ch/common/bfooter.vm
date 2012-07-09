@@ -1,0 +1,51 @@
+<div class="footer">
+	<div class="footerbox">
+		<h4>我们的服务</h4>
+		<ul>
+			<li>详细的市场调研和咨询服务</li>
+			<li>后续投资 投资管理</li>
+			<li>我们的中国客户简介</li>
+        </ul>
+    </div>
+    <div class="footerbox footermapbox">
+		<h4>我们的地理位置</h4>
+##		<div class="map-container" id="mapcontainer">
+##		</div>
+		<iframe class="map-container" style="width:100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://ditu.google.cn/maps?f=q&amp;source=s_q&amp;hl=zh-CN&amp;geocode=&amp;q=%E5%8C%97%E4%BA%AC%E5%B8%82%E5%8C%97%E4%BA%AC%E6%9C%9D%E9%98%B3CBD%E5%9B%BD%E9%99%85%E5%A4%A7%E5%8E%A6&amp;aq=1&amp;oq=CBD%E5%9B%BD%E9%99%85%E5%A4%A7%E5%8E%A6&amp;sll=34.161818,117.246094&amp;sspn=38.141065,79.013672&amp;brcurrent=3,0x35f1ad03e76e6389:0xd5a4f5b942e87020,0,0x35f1abee23736947:0xd7bb8b3026d0813a%3B5,0,0&amp;ie=UTF8&amp;hq=CBD%E5%9B%BD%E9%99%85%E5%A4%A7%E5%8E%A6&amp;hnear=%E5%8C%97%E4%BA%AC%E5%B8%82%E6%9C%9D%E9%98%B3%E5%8C%BA&amp;ll=39.904947,116.451896&amp;spn=0.035391,0.019158&amp;t=m&amp;output=embed"></iframe><br /><small><a href="http://ditu.google.cn/maps?f=q&amp;source=embed&amp;hl=zh-CN&amp;geocode=&amp;q=%E5%8C%97%E4%BA%AC%E5%B8%82%E5%8C%97%E4%BA%AC%E6%9C%9D%E9%98%B3CBD%E5%9B%BD%E9%99%85%E5%A4%A7%E5%8E%A6&amp;aq=1&amp;oq=CBD%E5%9B%BD%E9%99%85%E5%A4%A7%E5%8E%A6&amp;sll=34.161818,117.246094&amp;sspn=38.141065,79.013672&amp;brcurrent=3,0x35f1ad03e76e6389:0xd5a4f5b942e87020,0,0x35f1abee23736947:0xd7bb8b3026d0813a%3B5,0,0&amp;ie=UTF8&amp;hq=CBD%E5%9B%BD%E9%99%85%E5%A4%A7%E5%8E%A6&amp;hnear=%E5%8C%97%E4%BA%AC%E5%B8%82%E6%9C%9D%E9%98%B3%E5%8C%BA&amp;ll=39.904947,116.451896&amp;spn=0.035391,0.019158&amp;t=m" target="_blank" style="color:#0000FF;text-align:left" >查看大图</a></small>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.3"></script>
+		<script type="text/javascript">
+			$(function(){
+##                var map = new BMap.Map("mapcontainer");      //设置卫星图为底图
+##                var point = new BMap.Point(38.141,79.013);    // 创建点坐标
+##                map.centerAndZoom(point,15);                     // 初始化地图,设置中心点坐标和地图级别。
+##                map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
+##                map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+			});
+        </script>
+    </div>
+	<div class="footerbox box-last">
+		<h4></h4>
+		<ul class="addresslist">
+			<li>欧洲经济和金融事场概况及应对</li>
+			<li>教学活动</li>
+			<li>筹备工作</li>
+        </ul>
+		<a href="#">
+            <img src="$projectUrl.getUrl("/webresource/uploads/logo_white.png")" alt="Logo"/>
+        </a>
+    </div>
+	<div class="clear"></div>
+    <div class="bottom">
+    	<div class="footermenu">
+            <ul>
+    			<li><a href="#">主页</a></li>
+                <li><a href="#">我们的服务</a></li>
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">联系我们</a></li>
+            </ul>
+        </div>
+    	<div class="copyright">
+          <p>&copy; 2012 LinktoChina - Powered by <a href="#">Resocialize</a></p>
+        </div>
+    </div>
+</div>

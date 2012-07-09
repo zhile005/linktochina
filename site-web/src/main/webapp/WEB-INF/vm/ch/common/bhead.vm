@@ -1,0 +1,56 @@
+<div class="topwrapper"></div>
+<div class="headerwrapper">
+    <div class="header">
+		<div class="headercenter">
+            <!-- Logo Start -->
+            <div class="logo">
+                <a href="#">
+                    <img src="$projectUrl.getUrl("/webresource/uploads/logo.png")" alt="Logo"/>
+                </a>
+            </div>
+            <!-- Logo End -->
+            <div class="headerright">
+                <a href="/en/index.ac">
+        			<img  class="language" src="$projectUrl.getUrl("/webresource/uploads/en.png")" alt="English" align="right"/>
+                </a>
+                <a href="/ch/index.ac">
+        			<img  class="language" src="$projectUrl.getUrl("/webresource/uploads/ch.png")" alt="China" align="right"/>
+                </a>
+                <!-- Menu Navigation Start --> 
+                <div class="mainmenu">
+                    <ul>
+                        <li>
+                            <a href="$projectUrl.getUrl("/ch/index.ac")" >主页</a>
+                        </li>
+                        <li>
+                            <a href="$projectUrl.getUrl("/ch/activities.ac")" >我们的服务</a>
+							<!--
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="#" >Business Advisory</a>
+                                </li>
+                                <li>
+                                    <a href="#" >Financial Advisory</a>
+                                </li>
+                                <li>
+                                    <a href="#" >Investment Advisory</a>
+                                </li>
+                            </ul>
+							-->
+                        </li>
+						<li>
+                            <a href="$projectUrl.getUrl("/ch/advantangeUs.ac")" >我们的优势</a>
+                        </li>
+						<li>
+                            <a href="$projectUrl.getUrl("/ch/aboutUs.ac")" >关于我们</a>
+                        </li>
+						<li>
+                            <a href="$projectUrl.getUrl("/ch/contactUs.ac")" >联系我们</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Menu Navigation End -->
+            </div>
+        </div>
+    </div>
+</div>

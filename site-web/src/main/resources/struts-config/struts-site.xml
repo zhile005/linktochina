@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="en" namespace="/en" extends="json-protected-default">
+        <action name="*" method="{1}" class="com.oa.action.MainAction">
+        	<result name="success">/WEB-INF/vm/en/main/{1}.vm</result>
+        	<result name="jsonTreeSuccess" type="json">
+		         <param name="root">jtnparent.children</param>
+            </result>
+        </action>
+    </package>
+    <package name="ch" namespace="/ch" extends="json-protected-default">
+        <action name="*" method="{1}" class="com.oa.action.MainAction">
+        	<result name="success">/WEB-INF/vm/ch/main/{1}.vm</result>
+        	<result name="jsonTreeSuccess" type="json">
+		         <param name="root">jtnparent.children</param>
+            </result>
+        </action>
+    </package>
+</struts>

@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%7r] %6p - %30.30c - %m \n"/>
+        </layout>
+    </appender>
+
+    <appender name="FILE-DEBUG" class="org.apache.log4j.FileAppender">
+        <param name="Append" value="false"/>
+        <param name="file" value="${log.path}/oa-debug.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n"/>
+        </layout>
+    </appender>
+    
+    <appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyy-ww"/>
+        <param name="Append" value="true"/>
+        <param name="file" value="${log.path}/log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="INFO"/>
+            <!--<param name="LevelMax" value="FATAL "/>-->
+        </filter>
+    </appender>
+
+    <appender name="FILE-AOP" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyy-ww"/>
+        <param name="file" value="${log.path}/oa-aop.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="INFO"/>
+            <!--<param name="LevelMax" value="FATAL "/>-->
+        </filter>
+    </appender>
+
+    <appender name="FILE-SQL" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyy-ww"/>
+        <param name="file" value="${log.path}/oa-sql.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n"/>
+        </layout>
+    </appender>
+    <appender name="FILE-VELOCITY" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyy-ww"/>
+        <param name="file" value="${log.path}/oa-velocity.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n"/>
+        </layout>
+    </appender>
+    
+	<appender name="FILE-OrderRefund" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyy-ww"/>
+        <param name="Append" value="true"/>
+        <param name="file" value="${log.path}/order_refund.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n"/>
+        </layout>        
+    </appender>
+
+    <category name="java.sql" additivity="false">
+        <priority value="${log.level}"/>
+        <appender-ref ref="FILE-SQL"/>
+        <appender-ref ref="FILE-DEBUG"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+    <category name="org.apache.velocity" additivity="false">
+        <priority value="${log.level}"/>
+        <appender-ref ref="FILE-VELOCITY"/>
+        <appender-ref ref="FILE-DEBUG"/>
+        <appender-ref ref="FILE"/>
+    </category>
+
+    <root>
+        <priority value="${log.level}"/>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE-DEBUG"/>
+    </root>
+</log4j:configuration>

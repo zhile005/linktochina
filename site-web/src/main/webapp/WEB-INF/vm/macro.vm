@@ -1,0 +1,32 @@
+#* @vtlvariable name="module" type="com.jd.common.web.url.JdUrl" *#
+#* @vtlvariable name="page" type="com.jd.common.util.base.PaginatedArrayList" *#
+#macro (showPageFormSubmit  $page  $formId)
+	<input type="hidden" name="page" id="page" value="#if($page.index)${page.index}#else 1#end"/>
+    #if($page)
+        #set($pagePos = 2) ##当前页的尾巴长度
+        总$!{page.totalItem}条记录
+        #if($page.previousPageAvailable) ##如果能向上翻页
+        <a href="javascript:jQuery('#page').val('$!{page.previousPage}');document.getElementById('$!{formId}').submit();">上一页</a>
+        <a href="javascript:jQuery('#page').val('1');document.getElementById('$!{formId}').submit();">1</a>
+        #end
+        #if($!page.index>$pagePos+2) .. #end ##显示前面的省略号
+        #foreach($i in [$pagePos..1]) ##增加前面的尾巴
+            #if($!page.index - $i > 1)
+                #set($pageIndex= $!page.index - $i)
+            <a href="javascript:jQuery('#page').val('$pageIndex');document.getElementById('$!{formId}').submit();">$pageIndex</a>
+            #end
+        #end
+        <span>$!page.index</span> ##显示当前页号
+        #foreach($i in [1..$pagePos]) ##增加后面的尾巴
+            #if($!page.totalPage - $!page.index - $i > 0)
+                #set($pageIndex= $!page.index + $!i)
+            <a href="javascript:jQuery('#page').val('$pageIndex');document.getElementById('$!{formId}').submit();">$pageIndex</a>
+            #end
+        #end
+        #if($!page.totalPage - $!page.index > $pagePos+1) .. #end ##显示后面的省略号
+        #if($page.nextPageAvailable) ##显示后面的页
+        <a href="javascript:jQuery('#page').val('$!{page.totalPage}');document.getElementById('$!{formId}').submit();">$!{page.totalPage}</a>
+        <a href="javascript:jQuery('#page').val('$!{page.nextPage}');document.getElementById('$!{formId}').submit();">下一页</a>
+		#end 每页<input type="text" name="rows" id="rows" value="$!page.pageSize" onchange="jQuery('#page').val('1');document.getElementById('$!{formId}').submit();" style="width:30px"/>条
+    #end
+#end

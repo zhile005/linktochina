@@ -1,0 +1,34 @@
+.banner {
+    border: 1px solid #C0C0C0;
+    position: relative;
+    z-index: 1;
+}
+.banner .scroll-img img {
+    height: 345px;
+    overflow: hidden;
+    width: 620px;
+}
+.banner .scroll-num {
+    bottom: 5px;
+    font-size: 12px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    z-index: 10;
+}
+.banner .scroll-num li {
+    background: url("./images/banner-num.gif") no-repeat scroll left top transparent;
+    color: #000000;
+    cursor: pointer;
+    display: inline;
+    float: left;
+    height: 16px;
+    line-height: 16px;
+    margin-right: 5px;
+    text-align: center;
+    width: 16px;
+}
+.banner .scroll-num li.on {
+    background: url("./images/banner-num-on.gif") no-repeat scroll left top transparent;
+    color: #FFFFFF;
+}

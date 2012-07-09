@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    #parse("/WEB-INF/vm/en/common/head.vm")
+    <body>
+		<div class="wrapper">
+    		#parse("/WEB-INF/vm/en/common/bhead.vm")
+			<div class="bodywrapper">
+				<div class="static-box">
+    				<div class="heading-text">
+                      <h3>Contact us</h3>
+                      <p></p>
+                    </div>
+    				<div class="page-heading">
+						<img alt="" src="$projectUrl.getUrl("/webresource/uploads/page-heading1.jpg")">
+                    </div>
+                </div>
+				<div class="clear"></div>
+				<div class="maincontent-full">
+                    <div class="conctactleft">
+    					#parse("/WEB-INF/vm/en/common/mail.vm")
+    				</div>
+    				<div class="contactright">
+						<ul class="contactinfo">
+                            <li>
+								•Room A550, Floor 5 CBD International Mansion No 16, Yongandongli, Chaoyang
+								<b>Beijing City </b>
+							</li>
+							<li>
+								<strong>•Phone:</strong>: +86 13426226799
+							</li>
+							<li>
+								<strong>•Email </strong>:<a href="mailto:edward_linktochina@yeah.net">edward_linktochina@yeah.net</a><br>
+							</li>
+                        </ul>
+    				</div>
+                </div>
+				<div class="clear"></div>
+            </div>
+			<div class="bottomwrapper"></div>
+    		#parse("/WEB-INF/vm/en/common/bfooter.vm")
+        </div>
+	</body>
+</html>

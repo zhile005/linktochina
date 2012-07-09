@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    #parse("/WEB-INF/vm/en/common/head.vm")
+    <body>
+		<div class="wrapper">
+    		#parse("/WEB-INF/vm/en/common/bhead.vm")
+			<div class="bodywrapper">
+				<div class="static-box">
+    				<div class="heading-text">
+                      <h3>About us</h3>
+                      <p></p>
+                    </div>
+    				<div class="page-heading">
+						<img alt="" src="$projectUrl.getUrl("/webresource/uploads/page-heading1.jpg")">
+                    </div>
+                </div>
+				<div class="clear"></div>
+				<div class="main-box">
+                    <div class="maincontent">
+    					<h4>Mario Tettamanti</h4>
+    					<p>
+							• PhD in Economic  
+                            <br>
+                            • Swiss citizen, 62 years old   
+                            <br>
+                            • Italian, French, German, English, a little of Chinese 
+							<p class="s2">Mr. Mario Tettamanti is a Swiss citizen.He has over 35 years experience in Banking (Economic and financial research, Asset Management and Wealth Management). He worked for UBS (the Swiss biggest bank) in Lugano, Zurich, and London, New York. He also worked as Director of the financial department with Banco di Lugano, subsidiary of UBS responsible for more than 20 billion euro of customers’ asset. 
+He think that to work professionally in the financial field you need to have different skills, like the knowledge of the Economic theory, the knowledge of the financial market and the financial products, a free spirit and, last but not least, a lot of connections. He enjoy staying with his family, spending some time with friends, playing tennis, eat Italian and French food, drink good wine. He holds a PhD in Economics and Finance at the University of Neuchâtel. 
+							</p>
+						</p>
+    					<h4>Yin Qing (Edward)</h4>
+    					<p>
+							• Master in Economics
+                            <br>
+                            • Chinese citizen, 30years old
+                            <br>
+                            • Chinese, English
+						</p>
+						<p class="s2">Mr.Yin has standout business analysis and problem slovin skills combined with the ability to make quality judgments and recommendations supported by strategic thinking make hime an asset to clients. Formerly he worked for TRE NZ as a General Manager to expand the Chinese market.
+He has over 6 years’ experience in business development and management. Mr.Yin lived in New Zealand for 7 years, he holds a BCA/MBA from Victoria University in New Zealand. In his spare time, he likes to play piano and sing acapella with friends.
+							</p>
+						<h4>Simona Tettamanti</h4>
+    					<p>
+							• Master in Arts of Economics
+                            <br>
+                            • Swiss citizen
+                            <br>
+                            • Italian, English, German, French and Chinese. 
+						</p>
+						<h4>Ye Ping (Maya)</h4>
+    					<p>
+							• Master in Public Relations
+                            <br>
+                            • Chinese citizen
+                            <br>
+                            • Chinese, English and German
+						</p>
+    				</div>
+					<div class="sidebar">
+    					#parse("/WEB-INF/vm/en/common/mailBox.vm")
+    				</div>
+                </div>
+				<div class="clear"></div>
+            </div>
+			<div class="bottomwrapper"></div>
+    		#parse("/WEB-INF/vm/en/common/bfooter.vm")
+        </div>
+	</body>
+</html>
