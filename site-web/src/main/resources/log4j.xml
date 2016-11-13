@@ -66,6 +66,19 @@
         </layout>        
     </appender>
 
+	<appender name="MongoDB" class="org.log4mongo.AsynMongoDbLayoutAppender">
+		<param name="threadCount" value="2" />
+		<param name="jvmMonitor" value="true" />
+		<param name="databaseName" value="linktochina" />
+		<param name="collectionName" value="linktochina_log" />
+		<param name="hostname" value="172.21.0.128" />
+		<param name="port" value="27017" />
+		<layout class="org.log4mongo.contrib.HostInfoPatternLayout">
+			<param name="ConversionPattern"
+				value="timestamp:%d,level:%p,className:%c,message:%m,pid:%V,ip:%I" />
+		</layout>
+	</appender>
+    
     <category name="java.sql" additivity="false">
         <priority value="${log.level}"/>
         <appender-ref ref="FILE-SQL"/>
@@ -82,8 +95,9 @@
     </category>
 
     <root>
-        <priority value="${log.level}"/>
+        <priority value="DEBUG"/>
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE-DEBUG"/>
+        <appender-ref ref="MongoDB"/>
     </root>
 </log4j:configuration>
